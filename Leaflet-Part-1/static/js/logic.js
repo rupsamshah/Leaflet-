@@ -1,10 +1,12 @@
 const queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
 // Perform a GET request to the query URL
-fetch(queryUrl)
-  .then(response => response.json())
+d3.json(queryUrl)
   .then(earthquakeData => {
     createFeatures(earthquakeData.features);
+  })
+  .catch(error => {
+    console.log("Error fetching earthquake data:", error);
   });
 
 var map = L.map('map').setView([37.8, -96], 5);
@@ -64,28 +66,26 @@ function createMarker(feature, latlng) {
   return marker;
 }
 
-
 // Change marker color based on depth
 function markerColor(depth) {
   let color = "#B5E61D";
   switch (true) {
-      case (depth < 10):
-          color = "#03E604";
-          break;
-      case (depth < 30):
-          color = '#A4FE0B';
-          break;
-      case (depth < 50):
-          color = '#B5E61D';
-          break;
-      case (depth < 70):
-          color = '#D5FE0D';
-          break;
-      case (depth < 90):
-          color = '#FF2E15';
-          break;
+    case (depth < 10):
+      color = "#03E604";
+      break;
+    case (depth < 30):
+      color = '#A4FE0B';
+      break;
+    case (depth < 50):
+      color = '#B5E61D';
+      break;
+    case (depth < 70):
+      color = '#D5FE0D';
+      break;
+    case (depth < 90):
+      color = '#FF2E15';
+      break;
   }
-
 
   return color;
 }
@@ -94,5 +94,6 @@ function markerColor(depth) {
 function markerSize(magnitude) {
   return magnitude * 3;
 }
+
 
 
