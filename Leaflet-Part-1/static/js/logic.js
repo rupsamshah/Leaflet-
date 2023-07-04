@@ -92,7 +92,7 @@ function markerColor(depth) {
 
 // Define the marker size based on magnitude
 function markerSize(magnitude) {
-  return magnitude * 3;
+  return magnitude * 4;
 }
 
 
