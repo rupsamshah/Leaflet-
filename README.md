@@ -1,4 +1,4 @@
-# leaflet-challenge
+# leaflet
 
 ## Part 1: Create the Earthquake Visualization
 
